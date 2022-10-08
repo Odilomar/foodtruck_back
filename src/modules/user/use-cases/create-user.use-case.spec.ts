@@ -1,5 +1,7 @@
 import { faker } from '@faker-js/faker';
+import { BadRequestException } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
+import { cpf } from 'cpf-cnpj-validator';
 import { CreateUserDto } from '../dto/create-user.dto';
 import { UserModel } from '../infra/model/user.model';
 import { UserRepository } from '../infra/repositories/user.repository';
@@ -12,7 +14,7 @@ describe('CreateUserUseCase', () => {
     name: faker.name.firstName(),
     email: faker.internet.email(),
     password: faker.internet.password(),
-    cpf: faker.datatype.number().toString(),
+    cpf: cpf.generate(),
   } as CreateUserDto;
 
   const user = {
@@ -85,5 +87,14 @@ describe('CreateUserUseCase', () => {
         cpf: null,
       }),
     ).rejects.toThrowError();
+  });
+
+  it('should throw error on create user with invalid cpf', async () => {
+    await expect(
+      service.execute({
+        ...input,
+        cpf: '123',
+      }),
+    ).rejects.toThrow(new BadRequestException('CPF is not valid!'));
   });
 });
