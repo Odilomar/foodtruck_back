@@ -1,8 +1,8 @@
 import { faker } from '@faker-js/faker';
 import { IUser } from '../interfaces/user.interface';
-import { UserModel } from './user.model';
+import { UserEntity } from './user.entity';
 
-describe('UserModel', () => {
+describe('UserEntity', () => {
   const minimal: IUser = {
     id: faker.datatype.number(),
     name: faker.name.firstName(),
@@ -14,10 +14,10 @@ describe('UserModel', () => {
   };
 
   it('should be defined', () => {
-    expect(new UserModel(minimal)).toBeDefined();
+    expect(new UserEntity(minimal)).toBeDefined();
   });
   it('should create a user with minimal information', () => {
-    const user = new UserModel(minimal);
+    const user = new UserEntity(minimal);
 
     expect(user).toHaveProperty('id', minimal.id);
     expect(user).toHaveProperty('name', minimal.name);
@@ -29,7 +29,7 @@ describe('UserModel', () => {
   });
   it('should create a user with deleted_at', () => {
     const deleted_at = faker.date.future();
-    const user = new UserModel({
+    const user = new UserEntity({
       ...minimal,
       deleted_at,
     });
