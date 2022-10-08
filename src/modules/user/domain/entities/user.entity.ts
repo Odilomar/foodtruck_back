@@ -4,7 +4,8 @@ import { IUser } from '../interfaces/user.interface';
 
 export class UserEntity implements IUser {
   @IsNumber()
-  id: number;
+  @IsOptional()
+  id?: number;
 
   @IsString()
   name: string;
@@ -19,10 +20,12 @@ export class UserEntity implements IUser {
   cpf: string;
 
   @IsDate()
-  created_at: Date;
+  @IsOptional()
+  created_at?: Date;
 
   @IsDate()
-  updated_at: Date;
+  @IsOptional()
+  updated_at?: Date;
 
   @IsDate()
   @IsOptional()
