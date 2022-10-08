@@ -15,11 +15,11 @@ describe('UpdateUserUseCase', () => {
     email: faker.internet.email(),
     password: faker.internet.password(),
     cpf: faker.datatype.number().toString(),
+    id: faker.datatype.number(),
   } as UpdateUserDto;
 
   const user = {
     ...input,
-    id: faker.datatype.number(),
     created_at: faker.date.past(),
     updated_at: faker.date.future(),
   } as UserModel;
