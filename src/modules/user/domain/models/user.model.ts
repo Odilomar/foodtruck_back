@@ -1,6 +1,6 @@
 import { EntityValidator } from '@/modules/shared/validators/class-validator-fields';
 import { IsDate, IsNumber, IsOptional, IsString } from 'class-validator';
-import { IUser } from '../entities/user.interface';
+import { IUser } from '../interfaces/user.interface';
 
 export class UserModel implements IUser {
   @IsNumber()

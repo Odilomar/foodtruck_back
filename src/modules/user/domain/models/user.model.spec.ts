@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker';
-import { IUser } from '../entities/user.interface';
+import { IUser } from '../interfaces/user.interface';
 import { UserModel } from './user.model';
 
 describe('UserModel', () => {
