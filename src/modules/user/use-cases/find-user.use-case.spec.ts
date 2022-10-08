@@ -1,19 +1,20 @@
 import { faker } from '@faker-js/faker';
 import { Test, TestingModule } from '@nestjs/testing';
-import { FindOneUserDto } from '../dto/find-one-user.dto';
+import { FindUserDto } from '../dto/find-user.dto';
 import { UserModel } from '../infra/model/user.model';
 import { UserRepository } from '../infra/repositories/user.repository';
-import { FindOneUserUseCase } from './find-one-user.use-case';
+import { FindUserUseCase } from './find-user.use-case';
 
-describe('FindOneUserUseCase', () => {
-  let service: FindOneUserUseCase;
+describe('FindUserUseCase', () => {
+  let service: FindUserUseCase;
 
   const input = {
-    id: faker.datatype.number(),
-  } as FindOneUserDto;
+    search: faker.datatype.string(),
+  } as FindUserDto;
 
   const user = {
     ...input,
+    id: faker.datatype.number(),
     name: faker.name.firstName(),
     email: faker.internet.email(),
     password: faker.internet.password(),
@@ -25,29 +26,27 @@ describe('FindOneUserUseCase', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
-        FindOneUserUseCase,
+        FindUserUseCase,
         {
           provide: UserRepository,
           useValue: {
-            findOne: jest.fn().mockReturnValue(user),
+            find: jest.fn().mockReturnValue([user]),
           },
         },
       ],
     }).compile();
 
-    service = module.get<FindOneUserUseCase>(FindOneUserUseCase);
+    service = module.get<FindUserUseCase>(FindUserUseCase);
   });
 
   it('should be defined', () => {
     expect(service).toBeDefined();
   });
 
-  it('should find one user', async () => {
+  it('should find users', async () => {
     const founded = await service.execute(input);
 
-    expect(founded).toHaveProperty('name', user.name);
-    expect(founded).toHaveProperty('email', user.email);
-    expect(founded).toHaveProperty('password', user.password);
-    expect(founded).toHaveProperty('cpf', user.cpf);
+    expect(founded.length).toBeGreaterThan(0);
+    expect(founded[0]).toHaveProperty('id', user.id);
   });
 });
