@@ -1,3 +1,4 @@
+import { customDateFactory } from '@/modules/shared/utils/custom-date';
 import { EntityValidator } from '@/modules/shared/validators/class-validator-fields';
 import { IsDate, IsNumber, IsOptional, IsString } from 'class-validator';
 import { IUser } from '../interfaces/user.interface';
@@ -46,8 +47,10 @@ export class UserEntity implements IUser {
     this.email = email;
     this.password = password;
     this.cpf = cpf;
-    this.created_at = created_at;
-    this.updated_at = updated_at;
+    this.created_at =
+      (created_at && customDateFactory(created_at)) || customDateFactory();
+    this.updated_at =
+      (updated_at && customDateFactory(updated_at)) || customDateFactory();
     this.deleted_at = deleted_at;
 
     this.validate();
