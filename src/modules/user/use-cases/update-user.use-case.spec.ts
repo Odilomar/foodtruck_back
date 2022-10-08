@@ -1,6 +1,7 @@
 import { faker } from '@faker-js/faker';
-import { NotFoundException } from '@nestjs/common';
+import { BadRequestException, NotFoundException } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
+import { cpf } from 'cpf-cnpj-validator';
 import { UpdateUserDto } from '../dto/update-user.dto';
 import { UserModel } from '../infra/model/user.model';
 import { UserRepository } from '../infra/repositories/user.repository';
@@ -14,7 +15,7 @@ describe('UpdateUserUseCase', () => {
     name: faker.name.firstName(),
     email: faker.internet.email(),
     password: faker.internet.password(),
-    cpf: faker.datatype.number().toString(),
+    cpf: cpf.generate(),
     id: faker.datatype.number(),
   } as UpdateUserDto;
 
@@ -61,5 +62,14 @@ describe('UpdateUserUseCase', () => {
     await expect(service.execute(input)).rejects.toThrow(
       new NotFoundException('User not found!'),
     );
+  });
+
+  it('should throw error when user cpf is not valid', async () => {
+    await expect(
+      service.execute({
+        ...input,
+        cpf: '1212',
+      }),
+    ).rejects.toThrow(new BadRequestException('User cpf is not valid!'));
   });
 });
