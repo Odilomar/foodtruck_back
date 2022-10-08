@@ -24,11 +24,15 @@ export class UserRepository {
     return this.userRepository.findOne(props);
   }
 
-  async create(user: UserEntity) {
+  create(user: UserEntity) {
     return this.userRepository.create(user);
   }
 
-  async save(user: UserModel) {
+  async save(user: UserEntity | UserModel) {
+    if (user instanceof UserEntity) {
+      user = this.create(user);
+    }
+
     return this.userRepository.save(user);
   }
 
