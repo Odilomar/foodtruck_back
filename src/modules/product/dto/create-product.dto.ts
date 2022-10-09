@@ -1,6 +1,6 @@
 import { ProductTypeEnum } from '@/modules/shared/enum/product-type.enum';
 import { ApiProperty } from '@nestjs/swagger';
-import { IsEnum, IsNumber, IsString } from 'class-validator';
+import { IsEnum, IsNumber, IsString, IsUrl } from 'class-validator';
 
 export class CreateProductDto {
   @ApiProperty()
@@ -13,6 +13,7 @@ export class CreateProductDto {
 
   @ApiProperty()
   @IsString()
+  @IsUrl()
   url: string;
 
   @ApiProperty()
