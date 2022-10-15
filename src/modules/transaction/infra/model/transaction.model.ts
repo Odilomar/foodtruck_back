@@ -3,11 +3,14 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  JoinColumn,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { ITransaction } from '../../domain/interfaces/transaction.interface';
 import { PaymentTypeEnum } from '@/shared/enum/payment-type.enum';
+import { UserModel } from '@/modules/user/infra/model/user.model';
 
 @Entity('transactions')
 export class TransactionModel implements ITransaction {
@@ -40,4 +43,10 @@ export class TransactionModel implements ITransaction {
 
   @DeleteDateColumn({ nullable: true })
   deleted_at?: Date;
+
+  @ManyToOne(() => UserModel, ({ id }: UserModel) => id, {
+    eager: true,
+  })
+  @JoinColumn({ name: 'user_id' })
+  user: UserModel;
 }
