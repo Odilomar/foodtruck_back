@@ -20,8 +20,8 @@ import { FindOneTransactionUseCase } from '../use-cases/find-one-transaction.use
 import { FindTransactionUseCase } from '../use-cases/find-transaction.use-case';
 import { UpdateTransactionUseCase } from '../use-cases/update-transaction.use-case';
 
-@ApiTags('products')
-@Controller('products')
+@ApiTags('transactions')
+@Controller('transactions')
 export class TransactionController {
   constructor(
     private readonly createTransactionUseCase: CreateTransactionUseCase,
