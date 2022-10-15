@@ -6,7 +6,7 @@ import { DeleteResult } from 'typeorm';
 import { DeleteTransactionDto } from '../dto/delete-transaction.dto';
 import { TransactionModel } from '../infra/model/transaction.model';
 import { TransactionRepository } from '../infra/repositories/transaction.repository';
-import { DeleteTransactionUseCase } from './delete-product.use-case';
+import { DeleteTransactionUseCase } from './delete-transaction.use-case';
 
 describe('DeleteTransactionUseCase', () => {
   let service: DeleteTransactionUseCase;
