@@ -1,4 +1,4 @@
-import { ProductTypeEnum } from '@/modules/shared/enum/product-type.enum';
+import { ProductTypeEnum } from '@/shared/enum/product-type.enum';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IsEnum, IsNumber, IsOptional, IsString } from 'class-validator';
 

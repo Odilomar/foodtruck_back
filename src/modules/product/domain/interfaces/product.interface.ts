@@ -1,4 +1,4 @@
-import { ProductTypeEnum } from '@/modules/shared/enum/product-type.enum';
+import { ProductTypeEnum } from '@/shared/enum/product-type.enum';
 
 export interface IProduct {
   id?: number;

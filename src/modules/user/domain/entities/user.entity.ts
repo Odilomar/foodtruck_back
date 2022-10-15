@@ -1,5 +1,5 @@
-import { customDateFactory } from '@/modules/shared/utils/custom-date';
-import { EntityValidator } from '@/modules/shared/validators/class-validator-fields';
+import { customDateFactory } from '@/shared/utils/custom-date';
+import { EntityValidator } from '@/shared/validators/class-validator-fields';
 import { IsDate, IsNumber, IsOptional, IsString } from 'class-validator';
 import { IUser } from '../interfaces/user.interface';
 

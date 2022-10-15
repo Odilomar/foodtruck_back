@@ -1,4 +1,4 @@
-import { ProductTypeEnum } from '@/modules/shared/enum/product-type.enum';
+import { ProductTypeEnum } from '@/shared/enum/product-type.enum';
 import { UserModel } from '@/modules/user/infra/model/user.model';
 import {
   Column,

@@ -1,4 +1,4 @@
-import { ProductTypeEnum } from '@/modules/shared/enum/product-type.enum';
+import { ProductTypeEnum } from '@/shared/enum/product-type.enum';
 import { faker } from '@faker-js/faker';
 import { Test, TestingModule } from '@nestjs/testing';
 import { CreateProductDto } from '../dto/create-product.dto';

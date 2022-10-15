@@ -1,6 +1,6 @@
-import { ProductTypeEnum } from '@/modules/shared/enum/product-type.enum';
-import { customDateFactory } from '@/modules/shared/utils/custom-date';
-import { EntityValidator } from '@/modules/shared/validators/class-validator-fields';
+import { ProductTypeEnum } from '@/shared/enum/product-type.enum';
+import { customDateFactory } from '@/shared/utils/custom-date';
+import { EntityValidator } from '@/shared/validators/class-validator-fields';
 import {
   IsDate,
   IsEnum,
