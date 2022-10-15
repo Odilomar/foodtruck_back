@@ -23,6 +23,7 @@ export class createTransactionTable1665704767197 implements MigrationInterface {
             name: 'customer_cpf',
             type: 'varchar',
             length: '15',
+            isNullable: true,
           },
           {
             name: 'net_total',
@@ -31,10 +32,12 @@ export class createTransactionTable1665704767197 implements MigrationInterface {
           {
             name: 'discounts',
             type: 'integer',
+            default: 0,
           },
           {
             name: 'gross_total',
             type: 'integer',
+            default: 0,
           },
           {
             name: 'payment_type',
