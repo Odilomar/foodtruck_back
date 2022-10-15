@@ -61,5 +61,5 @@ export class TransactionModel implements ITransaction {
     },
   )
   @JoinColumn()
-  transactionStatus: TransactionStatusModel;
+  transactionStatus: TransactionStatusModel[];
 }
