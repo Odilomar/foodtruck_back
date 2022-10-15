@@ -1,4 +1,4 @@
-import { TransactionStatusTypeEnum } from '@/shared/enum/transaction-status-type.enum';
+import { TransactionStatusEnum } from '@/shared/enum/transaction-status.enum';
 import {
   MigrationInterface,
   QueryRunner,
@@ -30,7 +30,7 @@ export class createTransactionStatusTable1665855213110
           {
             name: 'status',
             type: 'varchar',
-            default: `'${TransactionStatusTypeEnum.CREATED}'`,
+            default: `'${TransactionStatusEnum.CREATED}'`,
           },
           {
             name: 'created_at',
