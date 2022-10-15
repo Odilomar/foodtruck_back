@@ -60,7 +60,9 @@ describe('TransactionRepository', () => {
   });
 
   it('should create a TransactionModel instance', async () => {
-    newtransaction = await service.create(transaction as TransactionEntity);
+    newtransaction = await service.create(
+      transaction as unknown as TransactionEntity,
+    );
 
     expect(newtransaction).toBeInstanceOf(TransactionModel);
   });

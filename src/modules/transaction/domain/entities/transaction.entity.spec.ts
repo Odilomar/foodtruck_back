@@ -6,7 +6,7 @@ import { TransactionEntity } from './transaction.entity';
 describe('TransactionEntity', () => {
   const minimal: ITransaction = {
     id: faker.datatype.number(),
-    user_id: faker.datatype.string(),
+    user_id: faker.datatype.number(),
     net_total: faker.datatype.number(),
     payment_type: PaymentTypeEnum.CASH,
     created_at: faker.date.past(),
