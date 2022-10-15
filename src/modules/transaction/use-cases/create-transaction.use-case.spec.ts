@@ -1,8 +1,11 @@
 import { PaymentTypeEnum } from '@/shared/enum/payment-type.enum';
+import { TransactionStatusEnum } from '@/shared/enum/transaction-status.enum';
 import { faker } from '@faker-js/faker';
 import { Test, TestingModule } from '@nestjs/testing';
 import { CreateTransactionDto } from '../dto/create-transaction.dto';
+import { TransactionStatusModel } from '../infra/model/transaction-status.model';
 import { TransactionModel } from '../infra/model/transaction.model';
+import { TransactionStatusRepository } from '../infra/repositories/transaction-status.repository';
 import { TransactionRepository } from '../infra/repositories/transaction.repository';
 import { CreateTransactionUseCase } from './create-transaction.use-case';
 
@@ -22,6 +25,14 @@ describe('CreateTransactionUseCase', () => {
     updated_at: faker.date.future(),
   } as TransactionModel;
 
+  const transactionStatus = {
+    transaction_id: transaction.id,
+    status: TransactionStatusEnum.CREATED,
+    id: faker.datatype.number(),
+    created_at: faker.date.past(),
+    updated_at: faker.date.future(),
+  } as TransactionStatusModel
+
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
@@ -30,6 +41,12 @@ describe('CreateTransactionUseCase', () => {
           provide: TransactionRepository,
           useValue: {
             save: jest.fn().mockReturnValue(transaction),
+          },
+        },
+        {
+          provide: TransactionStatusRepository,
+          useValue: {
+            save: jest.fn().mockReturnValue(transactionStatus),
           },
         },
       ],
