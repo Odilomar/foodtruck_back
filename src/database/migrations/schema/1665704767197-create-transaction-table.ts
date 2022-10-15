@@ -1,8 +1,14 @@
 import { PaymentTypeEnum } from '@/shared/enum/payment-type.enum';
-import { MigrationInterface, QueryRunner, Table } from 'typeorm';
+import {
+  MigrationInterface,
+  QueryRunner,
+  Table,
+  TableForeignKey,
+} from 'typeorm';
 
 export class createTransactionTable1665704767197 implements MigrationInterface {
   private readonly tableName = 'transactions';
+  private readonly relationTableName = 'users';
 
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
@@ -58,6 +64,18 @@ export class createTransactionTable1665704767197 implements MigrationInterface {
             isNullable: true,
           },
         ],
+      }),
+    );
+
+    // add relation to usertransaction_id
+
+    await queryRunner.createForeignKey(
+      this.tableName,
+      new TableForeignKey({
+        columnNames: ['user_id'],
+        referencedTableName: this.relationTableName,
+        referencedColumnNames: ['id'],
+        onDelete: 'CASCADE',
       }),
     );
   }
