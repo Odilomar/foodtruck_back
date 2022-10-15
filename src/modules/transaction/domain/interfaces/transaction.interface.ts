@@ -2,7 +2,7 @@ import { PaymentTypeEnum } from '@/shared/enum/payment-type.enum';
 
 export interface ITransaction {
   id?: number;
-  user_id: string;
+  user_id: number;
   customer_cpf?: string;
   net_total: number;
   discounts?: number;

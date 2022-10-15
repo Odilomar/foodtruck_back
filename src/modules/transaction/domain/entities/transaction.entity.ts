@@ -15,8 +15,8 @@ export class TransactionEntity implements ITransaction {
   @IsOptional()
   id?: number;
 
-  @IsString()
-  user_id: string;
+  @IsNumber()
+  user_id: number;
 
   @IsString()
   @IsOptional()
