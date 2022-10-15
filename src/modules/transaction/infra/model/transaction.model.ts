@@ -5,12 +5,14 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { ITransaction } from '../../domain/interfaces/transaction.interface';
 import { PaymentTypeEnum } from '@/shared/enum/payment-type.enum';
 import { UserModel } from '@/modules/user/infra/model/user.model';
+import { TransactionStatusModel } from './transaction-status.model';
 
 @Entity('transactions')
 export class TransactionModel implements ITransaction {
@@ -49,4 +51,15 @@ export class TransactionModel implements ITransaction {
   })
   @JoinColumn({ name: 'user_id' })
   user: UserModel;
+
+  @OneToMany(
+    () => TransactionStatusModel,
+    (transactionsStatus: TransactionStatusModel) =>
+      transactionsStatus.transaction,
+    {
+      eager: true,
+    },
+  )
+  @JoinColumn()
+  transactionStatus: TransactionStatusModel;
 }
