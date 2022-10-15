@@ -31,7 +31,7 @@ describe('CreateTransactionUseCase', () => {
     id: faker.datatype.number(),
     created_at: faker.date.past(),
     updated_at: faker.date.future(),
-  } as TransactionStatusModel
+  } as TransactionStatusModel;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({

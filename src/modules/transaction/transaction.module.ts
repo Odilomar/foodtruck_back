@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { TransactionController } from './controllers/transaction.controller';
+import { TransactionStatusModel } from './infra/model/transaction-status.model';
 import { TransactionModel } from './infra/model/transaction.model';
 import { TransactionStatusRepository } from './infra/repositories/transaction-status.repository';
 import { TransactionRepository } from './infra/repositories/transaction.repository';
@@ -11,7 +12,9 @@ import { FindTransactionUseCase } from './use-cases/find-transaction.use-case';
 import { UpdateTransactionUseCase } from './use-cases/update-transaction.use-case';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([TransactionModel])],
+  imports: [
+    TypeOrmModule.forFeature([TransactionModel, TransactionStatusModel]),
+  ],
   providers: [
     TransactionRepository,
     TransactionStatusRepository,

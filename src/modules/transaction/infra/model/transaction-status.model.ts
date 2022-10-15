@@ -35,9 +35,7 @@ export class TransactionStatusModel implements ITransactionStatus {
   @DeleteDateColumn({ nullable: true })
   deleted_at?: Date;
 
-  @ManyToOne(() => TransactionModel, ({ id }: TransactionModel) => id, {
-    eager: true,
-  })
+  @ManyToOne(() => TransactionModel, ({ id }: TransactionModel) => id)
   @JoinColumn({ name: 'transaction_id' })
   transaction: TransactionModel;
 }
