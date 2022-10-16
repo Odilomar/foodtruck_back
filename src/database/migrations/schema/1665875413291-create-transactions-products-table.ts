@@ -6,9 +6,9 @@ import {
 } from 'typeorm';
 
 export class createCartTable1665875413291 implements MigrationInterface {
-  private readonly tableName = 'carts';
-  private readonly transactionTableName = 'carts';
-  private readonly productTableName = 'carts';
+  private readonly tableName = 'transactions_products';
+  private readonly transactionTableName = 'transactions';
+  private readonly productTableName = 'products';
 
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
