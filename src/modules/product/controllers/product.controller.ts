@@ -37,10 +37,10 @@ export class ProductController {
     return this.createProductUseCase.execute(input);
   }
 
-  @Put('/')
+  @Put('/:id')
   @HttpCode(HttpStatus.NO_CONTENT)
-  async updateProduct(@Body() input: UpdateProductDto) {
-    await this.updateProductUseCase.execute(input);
+  async updateProduct(@Param('id') id: number, @Body() input: UpdateProductDto) {
+    await this.updateProductUseCase.execute({id, ...input});
   }
 
   @Delete('/:id')

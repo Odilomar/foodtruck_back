@@ -37,10 +37,10 @@ export class TransactionController {
     return this.createTransactionUseCase.execute(input);
   }
 
-  @Put('/')
+  @Put('/:id')
   @HttpCode(HttpStatus.NO_CONTENT)
-  async updateTransaction(@Body() input: UpdateTransactionDto) {
-    await this.updateTransactionUseCase.execute(input);
+  async updateTransaction(@Param('id') id: number, @Body() input: UpdateTransactionDto) {
+    await this.updateTransactionUseCase.execute({id, ...input});
   }
 
   @Delete('/:id')
