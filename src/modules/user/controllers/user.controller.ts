@@ -37,10 +37,10 @@ export class UserController {
     return this.createUserUseCase.execute(input);
   }
 
-  @Put('/')
+  @Put('/:id')
   @HttpCode(HttpStatus.NO_CONTENT)
-  async updateUser(@Body() input: UpdateUserDto) {
-    await this.updateUserUseCase.execute(input);
+  async updateUser(@Param('id') id: number, @Body() input: UpdateUserDto) {
+    await this.updateUserUseCase.execute({id, ...input});
   }
 
   @Delete('/:id')
