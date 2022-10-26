@@ -19,6 +19,9 @@ export class FindProductUseCase {
       });
     }
 
-    return this.productRepository.find(where.length > 0 ? { where } : {});
+    return this.productRepository.find({
+      relations: ['created_by', 'updated_by'],
+      ...(where.length > 0 ? { where } : {}),
+    });
   }
 }
