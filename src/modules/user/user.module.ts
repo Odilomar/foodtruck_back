@@ -20,5 +20,6 @@ import { UpdateUserUseCase } from './use-cases/update-user.use-case';
     FindOneUserUseCase,
   ],
   controllers: [UserController],
+  exports: [FindUserUseCase],
 })
 export class UserModule {}
